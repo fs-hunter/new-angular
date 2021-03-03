@@ -1,0 +1,61 @@
+<div style="text-align:center">
+  <p></p>
+  <form [formGroup]="todoList" (ngSubmit)="onSubmit()">
+    <p>
+      <label for="title"> Title</label>
+      <input type="text" name="title" id="title" #newList formControlName="title">
+    </p>
+    <p>
+    <label for="description">Description</label>
+    <textarea name="description" id="description" formControlName="description"></textarea>
+  </p>
+  <p>
+    <label for="date">Date Of expire </label>
+    <input type="date" id="date" name="date" formControlName="date">
+  </p>
+  <!-- <p hidden>
+    <label for="Status"> </label>
+    <input type="text"id="Status"  name="Status" formControlName="Status" >
+  </p> -->
+  <p>
+    <button >Add Task</button>
+  </p>
+  </form>
+  <!-- <table>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Status</th>
+    </tr>
+    <tr *ngFor="let list of lists ;let j = index" >
+      <td>{{list.title}}</td>
+      <td>{{list.description}}</td>
+      <td>{{list.date}}</td>
+      <td>{{list.Status}}</td>
+      <td>{{msg}}</td>
+
+<div >
+    <button  (click)="clickEvent()" >
+    in progress</button>
+</div>
+
+      <input (click)="deleteTask(j)" type="button"
+      value="Delete" >
+
+      <td></td>
+    </tr>
+  </table>
+  </div> -->
+  <div *ngFor="let i of lists;let ind=index;">
+    <button (click)="onClick($event,ind)">{{i.title}}</button>
+    <p *ngIf="open[ind]">
+      {{i|json}}
+    </p>
+    <p *ngIf="compare(i.date)&&(status[ind]<4)">expired</p>
+<p *ngIf="status[ind]>=4">completed</p>
+
+<button *ngIf="(status[ind]<4)&&(!compare(i.date))" (click)="changestatus($event,ind)">change Status</button>
+
+<!-- {{ind}} -->
+</div>
