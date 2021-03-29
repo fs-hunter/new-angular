@@ -1,54 +1,71 @@
+<div class="row">
+  <div class="col-6" style="text-align: center; border-style: solid">
+    <h1>2do list</h1>
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+      <p>
+        <label for="title"></label>
+        <label for="title"> Title</label>
+        <input type="text" name="title" id="title" formControlName="title" />
+      </p>
+      <p>
+        <label for="description">Description</label>
+        <textarea
+          name="description"
+          id="description"
+          formControlName="description"
+        ></textarea>
+      </p>
+      <p>
+        <label for="date">Date Of expire </label>
+        <input
+          type="date"
+          id="date"
+          name="date"
+          min="2021-03-03"
+          formControlName="expiry"
+        />
+      </p>
 
-<div style="text-align:center">
-<h1>2do list</h1>
-	<form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
-    <p>
-		<label for='title'></label>
-	  <label for="title"> Title</label>
-      <input type="text" name="title" id="title"  formControlName="title">
-    </p>
-    <p>
-    <label for="description">Description</label>
-    <textarea name="description" id="description" formControlName="description"></textarea>
-  </p>
-  <p>
-    <label for="date">Date Of expire </label>
-    <input type="date" id="date" name="date"  min="2021-03-03" formControlName="expiry">
-  </p>
+      <p>
+        <button class="btn-danger">Add Task</button>
+      </p>
 
-  <p>
-    <button >Add Task</button>
-  </p>
-	</form>
+    </form>
+  </div>
+  <div class="col-6">
+    <div class="row" style="border-style: solid">
+      <div class="col-6">
+        <h3>Tasks Title</h3>
+        <div *ngFor="let i of record; let ind = index">
+          <button (click)="onClick($event, ind)" class="btn-success">
+            {{ i.title }}
+          </button>
+          <p *ngIf="open[ind]">
+            title:{{ i.title }} <br />
+            description:{{ i.description }} <br />
+            expiry:{{ i.expiry }} <br />
+          </p>
+        </div>
+      </div>
+      <div class="col-6">
+        <h5>Status</h5>
+        <div *ngFor="let i of record; let ind = index">
+          <p *ngIf="compare(i.expiry) && status[ind] < 3">expired</p>
 
-	<h3> Tasks added </h3>
-	<div *ngFor="let i of record;let ind=index;">
-		<button (click)="onClick($event,ind)">{{i.title}}</button>
-		<p *ngIf="open[ind]">
-		  title:{{i.title}} <br>
-      shortdescription:{{i.shortdescription}} <br>
-			expiry:{{i.expiry}} <br>
-		</p>
+          <p *ngIf="status[ind] == 3">completed</p>
+          <p *ngIf="status[ind] == 2">in progress</p>
+          <p *ngIf="status[ind] == 1">yet to start</p>
 
-		<p *ngIf="compare(i.expiry)&&(status[ind]<3)">expired</p>
-    <!-- <div *ngIf="status[ind]==3;then biswas else elseStatement;"> completed</div>
+          <button
+            *ngIf="status[ind] < 3 && !compare(i.expiry)"
+            (click)="changestatus($event, ind)"
+            class="btn-warning"
+          >
+            change Status
+          </button>
 
-    <ng-template #elseStatement ng> <p >in progress</p></ng-template>
-    <ng-template #biswas> <p >yet to start</p></ng-template> -->
-
-
-		<p *ngIf="status[ind]==3">completed</p>
-		<p *ngIf="status[ind]==2">in progress</p>
-		<p *ngIf="status[ind]==1">yet to start</p>
-
-		<button *ngIf="(status[ind]<3)&&(!compare(i.expiry))" (click)="changestatus($event,ind)" >change Status</button>
-
-
-	</div>
-
-
-
-
-
-
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

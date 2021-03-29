@@ -36,7 +36,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ValidatorComponent,
 
     PppComponent,
-    PanakjComponent
+    PanakjComponent,
+
   ],
   imports: [
     BrowserModule,

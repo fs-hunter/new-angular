@@ -7,8 +7,9 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./panakj.component.css']
 })
 export class PanakjComponent implements OnInit {
-
+  str: any;
   record = [];
+
 
   curr = new Date();
   open=[];
@@ -18,42 +19,41 @@ export class PanakjComponent implements OnInit {
     title: new FormControl(),
     expiry: new FormControl()
   });
+
   constructor() {
 
 
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  //       this.str=localStorage.getItem("user")
+  //       this.record=JSON.parse(this.str)
+  //       if(!this.record){
+  //         this.record=[]
+  // }
+
+
+
   }
   onSubmit() {
     this.open.push(false);
     this.status.push(0);
     this.record.push(this.todoForm.value);
-    // console.log(this.todoForm.value);
+     this.str =JSON.stringify(this.record);
+
+     localStorage.setItem("user",this.str);
+
   }
+
+
   onClick(e,ind){
-    //  var target = event.target || event.srcElement || event.currentTarget;
+
     this.open[ind]=this.open[ind]^1;
 
 
   }
   changestatus(e,ind){
     this.status[ind]+=1;
-    // if(this.status[ind]>=1)
-    // {
-    //   console.log("yet to start");
 
-    // }
-    // if(this.status[ind]>=2)
-    // {
-    //   console.log("in progress");
-
-    // }
-    // if(this.status[ind]>=3)
-    // {
-    //   console.log("completed");
-
-    // }
   }
   compare(f){
     let dates=f.split("-");
@@ -71,6 +71,7 @@ export class PanakjComponent implements OnInit {
 
     return 0;
   }
+
 
 }
 
