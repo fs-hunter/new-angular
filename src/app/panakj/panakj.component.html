@@ -17,21 +17,16 @@
       </p>
       <p>
         <label for="date">Date Of expire </label>
-        <input
-          type="date"
-          id="date"
-          name="date"
-          min="2021-03-29"
-          formControlName="expiry"
-        />
+        <input type="date"id="date"name="date" min="2021-03-30" formControlName="expiry"/>
       </p>
+
 
       <p>
         <button class="btn-danger">Add Task</button>
       </p>
-
     </form>
   </div>
+
   <div class="col-6">
     <div class="row" style="border-style: solid">
       <div class="col-6">
@@ -57,13 +52,14 @@
           <p *ngIf="status[ind] == 1">yet to start</p>
 
           <button
-            *ngIf="status[ind] < 3 && !compare(i.expiry)"
+            *ngIf="status[ind] < 3 "
             (click)="changestatus($event, ind)"
             class="btn-warning"
           >
             change Status
           </button>
-
+          <!--
+            <button (click)="saveFile(i.title,i.description,i.expiry)" class="btn-success">save</button> -->
         </div>
       </div>
     </div>

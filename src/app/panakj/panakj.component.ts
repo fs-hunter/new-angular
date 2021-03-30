@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-
+import { saveAs } from 'file-saver'
 @Component({
   selector: 'app-panakj',
   templateUrl: './panakj.component.html',
@@ -41,6 +41,13 @@ export class PanakjComponent implements OnInit {
      this.str =JSON.stringify(this.record);
 
      localStorage.setItem("user",this.str);
+    //  json format data download
+
+     const blob = new Blob([this.str], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "save-me.txt");
+
+
+
 
   }
 
@@ -58,6 +65,9 @@ export class PanakjComponent implements OnInit {
   compare(f){
     let dates=f.split("-");
 
+
+
+
     if(parseInt(dates[0])<this.curr.getFullYear())
     return 1;
     else if(parseInt(dates[0])>this.curr.getFullYear())
@@ -70,8 +80,18 @@ export class PanakjComponent implements OnInit {
     return 1;
 
     return 0;
+
   }
+  // save data in txt formart
+//   saveFile(m,n,o) {
+//     const blob = new Blob(["Title:-",m,"-------","Description:-",n,"-------","expriry:-",o], {type: "text/plain;charset=utf-8"});
+//     saveAs(blob, "save-me.json");
+//     }
+// }
 
 
 }
+
+
+
 
