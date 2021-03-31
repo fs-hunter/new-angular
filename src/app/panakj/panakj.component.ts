@@ -40,11 +40,20 @@ export class PanakjComponent implements OnInit {
     this.record.push(this.todoForm.value);
      this.str =JSON.stringify(this.record);
 
+    //  document.write("str:"+JSON.stringify( JSON.parse (this.str)));
+
+    // next page data forword
+
+    //  document.write("description:" +this.todoForm.value.description+"<br>");
+    //  document.write("title:" +this.todoForm.value.title+"<br>");
+    //  document.write("expriy:" +this.todoForm.value.expiry);
+
+
      localStorage.setItem("user",this.str);
     //  json format data download
 
-     const blob = new Blob([this.str], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, "save-me.txt");
+    //  const blob = new Blob([ this.str], {type: "text/plain;charset=utf-8"});
+    // saveAs(blob, "save-me.txt");
 
 
 
@@ -88,6 +97,7 @@ export class PanakjComponent implements OnInit {
 //     saveAs(blob, "save-me.json");
 //     }
 // }
+
 
 
 }

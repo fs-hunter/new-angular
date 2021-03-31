@@ -17,7 +17,7 @@
       </p>
       <p>
         <label for="date">Date Of expire </label>
-        <input type="date"id="date"name="date" min="2021-03-30" formControlName="expiry"/>
+        <input type="date"id="date"name="date" formControlName="expiry"/>
       </p>
 
 
@@ -51,11 +51,7 @@
           <p *ngIf="status[ind] == 2">in progress</p>
           <p *ngIf="status[ind] == 1">yet to start</p>
 
-          <button
-            *ngIf="status[ind] < 3 "
-            (click)="changestatus($event, ind)"
-            class="btn-warning"
-          >
+          <button *ngIf="status[ind]<3 &&(!compare(i.expiry))"(click)="changestatus($event, ind)"class="btn-warning">
             change Status
           </button>
           <!--
