@@ -17,12 +17,15 @@
       </p>
       <p>
         <label for="date">Date Of expire </label>
-        <input type="date"id="date"name="date" formControlName="expiry"/>
+        <input type="date"id="date"name="date" min="2021-04-01"formControlName="expiry"/>
       </p>
 
 
       <p>
         <button class="btn-danger">Add Task</button>
+      </p>
+      <p>
+        <button (click)="saveFile()" class="btn-success">save</button>
       </p>
     </form>
   </div>
@@ -55,7 +58,7 @@
             change Status
           </button>
           <!--
-            <button (click)="saveFile(i.title,i.description,i.expiry)" class="btn-success">save</button> -->
+            <button (click)="saveFile()" class="btn-success">save</button> -->
         </div>
       </div>
     </div>

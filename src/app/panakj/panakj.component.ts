@@ -50,13 +50,6 @@ export class PanakjComponent implements OnInit {
 
 
      localStorage.setItem("user",this.str);
-    //  json format data download
-
-    //  const blob = new Blob([ this.str], {type: "text/plain;charset=utf-8"});
-    // saveAs(blob, "save-me.txt");
-
-
-
 
   }
 
@@ -91,12 +84,13 @@ export class PanakjComponent implements OnInit {
     return 0;
 
   }
-  // save data in txt formart
-//   saveFile(m,n,o) {
-//     const blob = new Blob(["Title:-",m,"-------","Description:-",n,"-------","expriry:-",o], {type: "text/plain;charset=utf-8"});
-//     saveAs(blob, "save-me.json");
-//     }
-// }
+
+  saveFile() {
+      //  json format data download
+
+     const blob = new Blob([ this.str], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "save-me.txt");
+}
 
 
 
