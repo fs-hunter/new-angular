@@ -11,7 +11,7 @@ export class PanakjComponent implements OnInit {
   record = [];
 
 
-  curr = new Date();
+  curr = new Date;
   open=[];
   status=[];
   todoForm = new FormGroup({
@@ -19,12 +19,15 @@ export class PanakjComponent implements OnInit {
     title: new FormControl(),
     expiry: new FormControl()
   });
+  date: string;
 
   constructor() {
 
 
   }
   ngOnInit(): void {
+    this.date = new Date().toISOString().slice(0, 10);
+
   //       this.str=localStorage.getItem("user")
   //       this.record=JSON.parse(this.str)
   //       if(!this.record){
@@ -91,7 +94,9 @@ export class PanakjComponent implements OnInit {
      const blob = new Blob([ this.str], {type: "text/plain;charset=utf-8"});
     saveAs(blob, "save-me.txt");
 }
+block(){
 
+}
 
 
 }
