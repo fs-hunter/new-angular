@@ -15,18 +15,34 @@ export class PanakjComponent implements OnInit {
   open=[];
   status=[];
   todoForm = new FormGroup({
-    description: new FormControl(),
     title: new FormControl(),
+    description: new FormControl(),
     expiry: new FormControl()
   });
-  date: string;
+  date: any;
+  month:any;
+  year:any;
+  day:any;
+  minDate:any
 
   constructor() {
 
 
   }
   ngOnInit(): void {
-    this.date = new Date().toISOString().slice(0, 10);
+    this.date = new Date();
+   this.month = this.date.getMonth() + 1;
+     this.day = this.date.getDate();
+    this.year = this.date.getFullYear();
+    if(this.month < 10)
+   this.month = '0' + this.month.toString();
+if(this.day < 10)
+this.day = '0' + this.day.toString();
+
+this.minDate= this.year + '-' + this.month + '-' + this.day;
+
+
+    // this.date=(this.curr.toISOString().slice(0, 10));
 
   //       this.str=localStorage.getItem("user")
   //       this.record=JSON.parse(this.str)
@@ -53,7 +69,7 @@ export class PanakjComponent implements OnInit {
 
 
      localStorage.setItem("user",this.str);
-
+     this.todoForm.reset()
   }
 
 
@@ -84,6 +100,7 @@ export class PanakjComponent implements OnInit {
     else if(parseInt(dates[2])<this.curr.getDate())
     return 1;
 
+
     return 0;
 
   }
@@ -93,9 +110,6 @@ export class PanakjComponent implements OnInit {
 
      const blob = new Blob([ this.str], {type: "text/plain;charset=utf-8"});
     saveAs(blob, "save-me.txt");
-}
-block(){
-
 }
 
 
